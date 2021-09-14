@@ -30,3 +30,28 @@ function lightColor(element, number){
     element.classList.remove('selected')
   })
 }
+
+let checkOrder = () => {
+  for(let i in orderClicked){
+    if (orderClicked[i] !== order[i]){
+      lose();
+      break;
+    }
+
+    if(orderClicked.length == order.length){
+      alert(`Pontuação: ${points}\n Você acertou! Vamos pro próximo nível?`);
+      nextLevel();
+    }
+  }
+}
+
+let click = (color) => {
+  orderClicked[orderClicked.length] = color;
+  createColor.classList.add('selected');
+
+  setTimeout(() => {
+    createColor(color).classList.remove();
+  })
+
+  checkOrder();
+}
