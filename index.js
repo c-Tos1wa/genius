@@ -72,3 +72,11 @@ function nextLevel(){
   points++;
   shuffle();
 }
+
+let end = () => {
+  alert(`Pontuaçào: ${points}\nVocê perdeu o jogo\nClique em Ok e reinicie!`);
+  order = [];
+  orderClicked = [];
+
+  restartGame();
+}
