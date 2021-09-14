@@ -50,3 +50,7 @@ body{
   background-color: #FFD700;
   border-bottom-left-radius: 100%;
 }
+
+.selected{
+  opacity: 0.8;
+}
