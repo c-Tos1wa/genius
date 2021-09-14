@@ -5,7 +5,7 @@
 }
 
 body{
-  background-color: #fff3e7;
+  background-color: #DEB887;
 }
 
 .main-container{
@@ -18,11 +18,35 @@ body{
 
 .genius{
   display: grid;
-  grid-template-areas: 'green red' 'yellow blue';
-  grid-gap: 10px;
-  border: 1px solid #DCDCDC;
+  grid-template-areas: 'verde vermelho' 'amarelo azul';
+  grid-gap: 5px;
+  border: 1px solid #ffffff;
   background-color: #ffffff;
   width: 600px;
   height: 600px;
   border-radius: 100%;
+}
+
+.green{
+  grid-area: verde;
+  background-color: #006400;
+  border-top-left-radius: 100%;
+}
+
+.blue{
+  grid-area: azul;
+  background-color: #0000FF;
+  border-bottom-right-radius: 100%;
+}
+
+.red{
+  grid-area: vermelho;
+  background-color: #FF0000;
+  border-top-right-radius: 100%;
+}
+
+.yellow{
+  grid-area: amarelo;
+  background-color: #FFD700;
+  border-bottom-left-radius: 100%;
 }
