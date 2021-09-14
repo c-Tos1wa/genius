@@ -1,6 +1,6 @@
-var order = []
-var orderClicked = []
-var points = 0;
+let order = []
+let clickedOrder = []
+let points = 0;
 
 // ordem das cores: [ 0 - verde, 1 - vermelho, 2 - amarelo, 3 - azul]
 
@@ -12,7 +12,7 @@ const yellow = document.querySelector('.yellow');
 let shuffle = () => {
   let colorOrder = Math.floor(Math.random() * 4);
   order[order.length] = colorOrder;
-  orderClicked = [];
+  clickedOrder = [];
 
   for(let i in order){
     let elementColor = createColor(order[i]);
@@ -20,40 +20,40 @@ let shuffle = () => {
   }
 }
 
-function lightColor(element, number){
+let lightColor = (element, number) => {
   number = number * 500;
-  setTimeout(() => {
+  setTimeout (() =>{
     element.classList.add('selected');
   }, number - 250)
-
   setTimeout(() => {
-    element.classList.remove('selected')
+    element.classList.remove('selected');
   })
 }
 
+//checa se a ordem clicada é a mesma fornecida pelo jogo
 let checkOrder = () => {
-  for(let i in orderClicked){
-    if (orderClicked[i] !== order[i]){
-      lose();
+  for(let i in clickedOrder){
+    if (clickedOrder[i] != order[i]){
+      end();
       break;
     }
+  }
 
-    if(orderClicked.length == order.length){
-      alert(`Pontuação: ${points}\n Você acertou! Vamos pro próximo nível?`);
-      nextLevel();
-    }
+  if(clickedOrder.length == order.length){
+    alert(`Pontuação: ${points}\n Você acertou! Vamos pro próximo nível?`);
+    nextLevel();
   }
 }
 
 let click = (color) => {
-  orderClicked[orderClicked.length] = color;
-  createColor.classList.add('selected');
+  clickedOrder[clickedOrder.length] = color;
+  createColor(color).classList.add('selected');
 
   setTimeout(() => {
-    createColor(color).classList.remove();
-  })
+    createColor(color).classList.remove('selected');
+    checkOrder();
+  }, 250)
 
-  checkOrder();
 }
 
 let createColor = (color) => {
@@ -74,9 +74,22 @@ function nextLevel(){
 }
 
 let end = () => {
-  alert(`Pontuaçào: ${points}\nVocê perdeu o jogo\nClique em Ok e reinicie!`);
+  alert(`Pontuação: ${points}\nVocê perdeu o jogo\nClique em Ok e reinicie!`);
   order = [];
-  orderClicked = [];
+  clickedOrder = [];
 
-  restartGame();
+  playGame();
 }
+
+let playGame = () => {
+  alert('Bem-vindo ao Genius! Iniciando novo jogo')
+  points = 0;
+  nextLevel();
+}
+
+green.onclick = () => click(0);
+red.onclick = () => click(1);
+yellow.onclick = () => click(2);
+blue.onclick = () => click(3);
+
+playGame();
